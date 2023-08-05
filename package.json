@@ -49,5 +49,8 @@
   "bugs": {
     "url": "https://github.com/Dsspinetti/to_do_application/issues"
   },
-  "homepage": "https://github.com/Dsspinetti/to_do_application#readme"
+  "homepage": "https://github.com/Dsspinetti/to_do_application#readme",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
 }

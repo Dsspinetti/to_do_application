@@ -59,7 +59,7 @@ function App() {
   }, [todos]);
 
   const handleAddTodo = (newTodo) => {
-    fetch('http://localhost:5000/todos', {
+    fetch('http://localhost:3000/todos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -80,8 +80,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <header className="App-header-text">To-Do Application</header>
-        <button className="add-todo-button" onClick={() => setShowForm(true)}>
-          Add New Todo
+        <button className="add-todo-button" onClick={() => { setShowForm(true); }}>
+         Add New Todo
         </button>
         {showForm && <TodoForm onAddTodo={handleAddTodo} />}
         <ul>
