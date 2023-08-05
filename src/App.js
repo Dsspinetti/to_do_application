@@ -1,5 +1,7 @@
+import logo from './logo.svg';
 import './App.css';
 import './styles.css';
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 
 
@@ -39,6 +41,15 @@ const TodoForm = ({ onAddTodo }) => {
   );
 };
 
+=======
+
+
+const MyButton = () => {
+  return (
+    <button className="custom-button">Add to-do</button>
+  );
+};
+>>>>>>> parent of 0a2c457 (commit to save changes before adding form)
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -79,6 +90,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+<<<<<<< HEAD
         <header className="App-header-text">To-Do Application</header>
         <button className="add-todo-button" onClick={() => { setShowForm(true); }}>
          Add New Todo
@@ -92,7 +104,15 @@ function App() {
             </li>
           ))}
         </ul>
+=======
+      <header className = "App-header-text">To-Do Application</header>
+      <MyButton/>
+>>>>>>> parent of 0a2c457 (commit to save changes before adding form)
       </header>
+        <p>
+          
+        </p>
+        
     </div>
   );
 }

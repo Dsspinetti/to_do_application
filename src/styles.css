@@ -1,20 +1,12 @@
-/* Css for app.js */
-.add-todo-button {
+/* MyButton.css */
+.custom-button {
         background-color: green;
         color: black; /* This sets the color of the text inside the button */
         padding: 10px 20px;
-        border-radius: 10px;
+        border-radius: 5px;
         cursor: pointer;
         font-weight: bold;
         font-size: large;
+        justify-content: left;
   }
   
-.delete-todo-button {
-    background-color: red;
-    color: black; /* This sets the color of the text inside the button */
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: large;
-}
