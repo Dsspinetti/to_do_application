@@ -1,13 +1,14 @@
 import './App.css';
 import './styles.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
-const RemoveTodo = () => {
-  return (
-    <button className="delete-todo-button">Remove to-do</button>
-  );
-};
+
+// const RemoveTodo = () => {
+//   return (
+//     <button className="delete-todo-button">Remove to-do</button>
+//   );
+// };
 
 const TodoForm = ({ onAddTodo }) => {
   const [title, setTitle] = useState('');
@@ -40,32 +41,57 @@ const TodoForm = ({ onAddTodo }) => {
 
 
 function App() {
-
   const [showForm, setShowForm] = useState(false);
   const [todos, setTodos] = useState([]);
+  
 
-  const handleAddTodo = (todo) => {
-    setTodos([...todos, todo]);
-    setShowForm(false); // Hide the form after adding the todo
+  // Load todos from local storage on application startup
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+  // Save todos to local storage whenever todos state changes
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  const handleAddTodo = (newTodo) => {
+    fetch('http://localhost:5000/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTodo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the data returned from the backend after adding the todo
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the request
+      });
   };
+  
 
   return (
     <div className="App">
       <header className="App-header">
-      <header className = "App-header-text">To-Do Application</header>
-      <button className="add-todo-button" onClick={() => setShowForm(true)}>
+        <header className="App-header-text">To-Do Application</header>
+        <button className="add-todo-button" onClick={() => setShowForm(true)}>
           Add New Todo
         </button>
-      {showForm && <TodoForm onAddTodo={handleAddTodo} />}
-      <RemoveTodo />
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            <h3>{todo.title}</h3>
-            <p>{todo.description}</p>
-          </li>
-        ))}
-      </ul>
+        {showForm && <TodoForm onAddTodo={handleAddTodo} />}
+        <ul>
+          {todos.map((todo, index) => (
+            <li key={index}>
+              <h3>{todo.title}</h3>
+              <p>{todo.description}</p>
+            </li>
+          ))}
+        </ul>
       </header>
     </div>
   );
