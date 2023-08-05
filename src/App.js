@@ -1,16 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 import './styles.css';
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
+const AddTodo = () => {
+  return (
+    <button className="add-todo-button">Add to-do</button>
+  );
+};
 
-
-// const RemoveTodo = () => {
-//   return (
-//     <button className="delete-todo-button">Remove to-do</button>
-//   );
-// };
+const RemoveTodo = () => {
+  return (
+    <button className="delete-todo-button">Remove to-do</button>
+  );
+};
 
 const TodoForm = ({ onAddTodo }) => {
   const [title, setTitle] = useState('');
@@ -41,61 +43,27 @@ const TodoForm = ({ onAddTodo }) => {
   );
 };
 
-=======
-
-
-const MyButton = () => {
-  return (
-    <button className="custom-button">Add to-do</button>
-  );
-};
->>>>>>> parent of 0a2c457 (commit to save changes before adding form)
 
 function App() {
+
   const [showForm, setShowForm] = useState(false);
   const [todos, setTodos] = useState([]);
-  
 
-  // Load todos from local storage on application startup
-  useEffect(() => {
-    const storedTodos = localStorage.getItem('todos');
-    if (storedTodos) {
-      setTodos(JSON.parse(storedTodos));
-    }
-  }, []);
-
-  // Save todos to local storage whenever todos state changes
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-
-  const handleAddTodo = (newTodo) => {
-    fetch('http://localhost:3000/todos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTodo),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the data returned from the backend after adding the todo
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the request
-      });
+  const handleAddTodo = (todo) => {
+    setTodos([...todos, todo]);
+    setShowForm(false); // Hide the form after adding the todo
   };
-  
 
   return (
     <div className="App">
       <header className="App-header">
-<<<<<<< HEAD
-        <header className="App-header-text">To-Do Application</header>
-        <button className="add-todo-button" onClick={() => { setShowForm(true); }}>
-         Add New Todo
+        <div className="App-header-text">To-Do Application</div>
+        <AddTodo/>
+        <button className="add-todo-button" onClick={() => setShowForm(true)}>
+          Add New Todo
         </button>
         {showForm && <TodoForm onAddTodo={handleAddTodo} />}
+        <RemoveTodo />
         <ul>
           {todos.map((todo, index) => (
             <li key={index}>
@@ -104,15 +72,7 @@ function App() {
             </li>
           ))}
         </ul>
-=======
-      <header className = "App-header-text">To-Do Application</header>
-      <MyButton/>
->>>>>>> parent of 0a2c457 (commit to save changes before adding form)
       </header>
-        <p>
-          
-        </p>
-        
     </div>
   );
 }
